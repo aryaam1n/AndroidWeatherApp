@@ -1,40 +1,27 @@
 package com.example.retrofit_intro
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.widget.TextView
 import android.widget.Toast
 import com.example.retrofit_intro.constants.Constant
 import com.example.retrofit_intro.databinding.ActivityMainBinding
-import com.example.retrofit_intro.practice.UserInfo
 import com.example.retrofit_intro.weatherdata.CurrWeatherInterface
-import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import retrofit2.Call
-import retrofit2.Callback
 import retrofit2.HttpException
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
-import retrofit2.http.GET
-import retrofit2.http.Path
 import java.io.IOException
 
 
 class MainActivity : AppCompatActivity() {
 
-    // API KEY for weather app
-    // f1c09ce3bf4a8ef73568a7b384db0994
-    // 7adb7dcb00d3acd11fc66b0c74464a8a
     // https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
-    //                    URL is https://openweathermap.org/img/wn/10d@2x.png
+    // URL is https://openweathermap.org/img/wn/10d@2x.png
 
     //delay the initialization of variable until later
     private lateinit var binding: ActivityMainBinding
@@ -83,10 +70,23 @@ class MainActivity : AppCompatActivity() {
                     binding.tvTemp.text = "${weatherNow.main.temp.toInt()}°F"
                     val iconUrl = "https://openweathermap.org/img/wn/${weatherNow.weather[0].icon}.png"
                     Picasso.get().load(iconUrl).into(binding.ivWeatherIcon)
+
+                    binding.btnShowMap.setOnClickListener {
+                        val bundle = Bundle()
+                        bundle.putDouble("lat", weatherNow.coord.lat)
+                        bundle.putDouble("lon", weatherNow.coord.lon)
+                        val intent = Intent(this@MainActivity, MapActivity::class.java)
+                        intent.putExtras(bundle)
+                        startActivity(intent)
+                    }
+
+
                 }
             }
         }
     }
+
+
 
     /**
      * NEW CHANGES
