@@ -57,20 +57,23 @@ class MainActivity : AppCompatActivity() {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                     .create(CurrWeatherInterface::class.java)
-                    .getCurrentWeather("dallas", "imperial", "f1c09ce3bf4a8ef73568a7b384db0994")
+                    .getCurrentWeather("dallas", "imperial", Constant.apiKey)
             } catch (e: IOException){
-                Handler(Looper.getMainLooper()).post {
-                    Toast.makeText(applicationContext, "APP ERROR: ${e.message}", Toast.LENGTH_SHORT).show()
-                }
-//                Toast.makeText(applicationContext, "APPLICATION ERROR: ${e.message}", Toast.LENGTH_SHORT).show()
-//                return@launch
+//                Handler(Looper.getMainLooper()).post {
+//                    Toast.makeText(applicationContext, "APP ERROR: ${e.message}", Toast.LENGTH_SHORT).show()
+//                }
+                Toast.makeText(applicationContext, "APPLICATION ERROR: ${e.message}", Toast.LENGTH_SHORT).show()
+                return@launch
             } catch (e: HttpException){
-                Handler(Looper.getMainLooper()).post {
-                    Toast.makeText(applicationContext, "HTTP ERROR: ${e.message}", Toast.LENGTH_SHORT).show()
-                }
-//                Toast.makeText(applicationContext, "HTTP ERROR: ${e.message}", Toast.LENGTH_SHORT).show()
-//                return@launch
+//                Handler(Looper.getMainLooper()).post {
+//                    Toast.makeText(applicationContext, "HTTP ERROR: ${e.message}", Toast.LENGTH_SHORT).show()
+//                }
+                Toast.makeText(applicationContext, "HTTP ERROR: ${e.message}", Toast.LENGTH_SHORT).show()
+                return@launch
             }
+
+            //for some reason when I switched to the commented out part in the exception handler
+            //the response.isSuccessful was not working
 
 
             if (response.isSuccessful && response.body()!= null){
@@ -86,10 +89,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
+     * NEW CHANGES
+     * put api key in a constant/variable
+     */
+
+    /**
      * also make weather app dynamic to show different cities
      * take long lat and send it to another activity and display it on a map
      * also learn fragments
-     * also make api key into variable, don't make it hardcoded
      * some type of apk file where we can use it on our phone
      */
 
