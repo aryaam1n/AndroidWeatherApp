@@ -7,6 +7,7 @@ import android.widget.Toast
 import com.example.retrofit_intro.constants.Constant
 import com.example.retrofit_intro.databinding.ActivityMainBinding
 import com.example.retrofit_intro.weatherdata.CurrWeatherInterface
+import com.google.android.gms.maps.OnMapReadyCallback
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -19,9 +20,6 @@ import java.io.IOException
 
 
 class MainActivity : AppCompatActivity() {
-
-    // https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
-    // URL is https://openweathermap.org/img/wn/10d@2x.png
 
     //delay the initialization of variable until later
     private lateinit var binding: ActivityMainBinding
@@ -79,8 +77,6 @@ class MainActivity : AppCompatActivity() {
                         intent.putExtras(bundle)
                         startActivity(intent)
                     }
-
-
                 }
             }
         }
