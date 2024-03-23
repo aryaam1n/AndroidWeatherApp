@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">retrofit-intro</string>
     <string name="map_api_key">AIzaSyBc7_-Iit4JF1QVj2r2ezAfoAWGjnBE3CU</string>
+    <string name="weather_api_key">f1c09ce3bf4a8ef73568a7b384db0994</string>
 </resources>

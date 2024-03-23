@@ -47,6 +47,5 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         )
 
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(coordinates))
-
     }
 }

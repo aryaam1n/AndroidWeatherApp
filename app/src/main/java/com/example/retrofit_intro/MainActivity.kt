@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                     .create(CurrWeatherInterface::class.java)
-                    .getCurrentWeather("dallas", "imperial", Constant.apiKey)
+                    .getCurrentWeather("dallas", "imperial", applicationContext.getString(R.string.weather_api_key))
             } catch (e: IOException){
 //                Handler(Looper.getMainLooper()).post {
 //                    Toast.makeText(applicationContext, "APP ERROR: ${e.message}", Toast.LENGTH_SHORT).show()
@@ -86,12 +86,12 @@ class MainActivity : AppCompatActivity() {
 
     /**
      * NEW CHANGES
-     * put api key in a constant/variable
+     * put api keys in a constant/variable
+     * added map functionality
      */
 
     /**
      * also make weather app dynamic to show different cities
-     * take long lat and send it to another activity and display it on a map
      * also learn fragments
      * some type of apk file where we can use it on our phone
      */
@@ -103,33 +103,3 @@ class MainActivity : AppCompatActivity() {
      * suspend function can only run within other suspend functions or within a coroutine
      */
 }
-
-
-
-
-
-//    interface GetUser {
-//        @GET("/api/users/{uid}")
-//        fun getUser(@Path("uid") uid: String) : Call<UserInfo>
-//    }
-//
-//    private lateinit var tvDummy: TextView
-//
-//    tvDummy = binding.tvDummy
-//
-//    val getUser : GetUser = retrofit.create(GetUser::class.java)
-//
-//
-//    val call = getUser.getUser("2")
-//    call.enqueue(object : Callback<UserInfo> {
-//        override fun onResponse(call: Call<UserInfo>, response: Response<UserInfo>) {
-//            if (response.isSuccessful){
-//                tvDummy.text = response.body()?.data?.first_name.toString()
-//            }
-//        }
-//
-//        override fun onFailure(call: Call<UserInfo>, t: Throwable) {
-//            tvDummy.text = t.message
-//        }
-//    }
-//    )
