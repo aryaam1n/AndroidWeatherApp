@@ -3,6 +3,7 @@ package com.example.retrofit_intro
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.SearchView
 import android.widget.Toast
 import com.example.retrofit_intro.constants.Constant
 import com.example.retrofit_intro.databinding.ActivityMainBinding
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity() {
 
     //delay the initialization of variable until later
     private lateinit var binding: ActivityMainBinding
+    private var city : String = "austin"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,10 +33,27 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        getWeather()
+        binding.searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(userQuery: String?): Boolean {
+
+                if (userQuery!=null){
+                    city = userQuery
+                }
+
+                getWeather(city)
+                return true
+            }
+
+            override fun onQueryTextChange(userQuery: String?): Boolean {
+                return false
+            }
+
+        })
+
+        getWeather(city)
     }
 
-    private fun getWeather(){
+    private fun getWeather(city:String){
         GlobalScope.launch(Dispatchers.IO) {
             val response = try{
                 Retrofit.Builder()
@@ -42,17 +61,11 @@ class MainActivity : AppCompatActivity() {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                     .create(CurrWeatherInterface::class.java)
-                    .getCurrentWeather("dallas", "imperial", applicationContext.getString(R.string.weather_api_key))
+                    .getCurrentWeather(city, "imperial", applicationContext.getString(R.string.weather_api_key))
             } catch (e: IOException){
-//                Handler(Looper.getMainLooper()).post {
-//                    Toast.makeText(applicationContext, "APP ERROR: ${e.message}", Toast.LENGTH_SHORT).show()
-//                }
                 Toast.makeText(applicationContext, "APPLICATION ERROR: ${e.message}", Toast.LENGTH_SHORT).show()
                 return@launch
             } catch (e: HttpException){
-//                Handler(Looper.getMainLooper()).post {
-//                    Toast.makeText(applicationContext, "HTTP ERROR: ${e.message}", Toast.LENGTH_SHORT).show()
-//                }
                 Toast.makeText(applicationContext, "HTTP ERROR: ${e.message}", Toast.LENGTH_SHORT).show()
                 return@launch
             }
@@ -88,6 +101,8 @@ class MainActivity : AppCompatActivity() {
      * NEW CHANGES
      * put api keys in a constant/variable
      * added map functionality
+     * added search city bar
+     * data from one activity to another
      */
 
     /**
