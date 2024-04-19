@@ -3,6 +3,8 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-parcelize")
     id ("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+    id ("kotlin-kapt")
+//    id ("dagger.hilt.android.plugin")
 }
 
 android {
@@ -58,4 +60,32 @@ dependencies {
     implementation("com.squareup.picasso:picasso:2.8")
     implementation("com.squareup.okhttp3:okhttp:4.9.0")
     implementation ("com.google.android.gms:play-services-maps:18.2.0")
+
+
+    //Dagger - Hilt
+//    implementation ("com.google.dagger:hilt-android:2.28-alpha")
+//    kapt ("com.google.dagger:hilt-android-compiler:2.28-alpha")
+//    implementation ("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02")
+//    kapt ("androidx.hilt:hilt-compiler:1.0.0-alpha02")
+
+    // Activity KTX for viewModels()
+    implementation ("androidx.activity:activity-ktx:1.1.0")
+    // Architectural Components
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
+
+    // Lifecycle
+    implementation ("androidx.lifecycle:lifecycle-extensions:2.2.0")
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0")
+    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.2.0")
+
+    // Retrofit
+    implementation ("com.squareup.okhttp3:okhttp:4.9.0")
+
+    // Coroutines
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1")
+
+    // Coroutine Lifecycle Scopes
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
+    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.2.0")
 }

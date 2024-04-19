@@ -3,12 +3,12 @@ package com.example.retrofit_intro
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.SearchView
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import com.example.retrofit_intro.constants.Constant
+import com.example.retrofit_intro.currencydata.CurrencyInterface
 import com.example.retrofit_intro.databinding.ActivityMainBinding
 import com.example.retrofit_intro.weatherdata.CurrWeatherInterface
-import com.google.android.gms.maps.OnMapReadyCallback
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
 
     //delay the initialization of variable until later
     private lateinit var binding: ActivityMainBinding
-    private var city : String = "austin"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +31,8 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        var city : String = applicationContext.getString(R.string.default_location)
 
         binding.searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(userQuery: String?): Boolean {
@@ -44,6 +45,7 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
 
+            //false means that it will provide suggestions based on the user input
             override fun onQueryTextChange(userQuery: String?): Boolean {
                 return false
             }
@@ -90,11 +92,24 @@ class MainActivity : AppCompatActivity() {
                         intent.putExtras(bundle)
                         startActivity(intent)
                     }
+
+                    binding.btnCountryInfo.setOnClickListener {
+                        val bundle = Bundle()
+                        bundle.putDouble("lat", weatherNow.coord.lat)
+                        bundle.putDouble("lon", weatherNow.coord.lon)
+                        val intent = Intent(this@MainActivity, CountryActivity::class.java)
+                        intent.putExtras(bundle)
+                        startActivity(intent)
+                    }
                 }
             }
         }
     }
 
+
+
+
+    //intents and bundles are used to help pass data from one activity to another
 
 
     /**
@@ -109,6 +124,11 @@ class MainActivity : AppCompatActivity() {
      * also make weather app dynamic to show different cities
      * also learn fragments
      * some type of apk file where we can use it on our phone
+     * get current location
+     * push to docker registry, openshift, kubernetes
+     * add another activity that only shows up when city is called
+     * this activity will show the information about a country/city (lon, lat, currency, conversion to usd stuff like that)
+     * put any hardcoded thing in the strings.xml file
      */
 
 

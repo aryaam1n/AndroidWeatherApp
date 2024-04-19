@@ -23,7 +23,6 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 //        binding = ActivityMapBinding.inflate(layoutInflater)
 //        setContentView(binding.root)
 
-
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as? SupportMapFragment
         mapFragment?.getMapAsync(this@MapActivity)
     }
@@ -48,4 +47,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(coordinates))
     }
+
+    //google maps does the REST api key call within the getMapAsync function
+
+
 }

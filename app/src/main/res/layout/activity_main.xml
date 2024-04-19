@@ -10,17 +10,28 @@
         android:id="@+id/btnShowMap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Show Map"
+        android:text="@string/show_map"
         app:layout_constraintBottom_toTopOf="@+id/tvTemp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/tvCity" />
+
+    <Button
+        android:id="@+id/btnCountryInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/country_info"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnShowMap"
+        android:layout_marginTop="15dp"/>
 
     <TextView
         android:id="@+id/tvCity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="City"
+        android:textStyle="bold"
         android:textSize="33sp"
         android:layout_marginBottom="400dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -33,11 +44,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Temperature"
+        android:textStyle="bold"
         android:textSize="48sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="100dp"/>
 
     <ImageView
         android:id="@+id/ivWeatherIcon"
@@ -64,7 +77,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:iconifiedByDefault="false"
-            app:queryHint="Enter city...." />
+            app:queryHint="@string/enter_city" />
 
     </androidx.cardview.widget.CardView>
 
