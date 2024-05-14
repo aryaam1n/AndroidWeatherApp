@@ -38,6 +38,8 @@ class CountryActivity : AppCompatActivity() {
         getCurrencyInfo()
     }
 
+    //latin (spanish, portuguese), vietnamese, hebrew, arabic
+
     private fun getCurrencyInfo(){
 
         GlobalScope.launch(Dispatchers.IO) {
@@ -61,15 +63,15 @@ class CountryActivity : AppCompatActivity() {
                     val currency = response.body()!!
 
                     binding.btnConverter.setOnClickListener {
-                        val spinnerFrom = binding.spFrom
-                        val spinnerTo = binding.spTo
-                        val fromCurrencyRate = getRateForCurrency(spinnerFrom.selectedItem.toString(), currency.rates)
-                        val toCurrencyRate = getRateForCurrency(spinnerTo.selectedItem.toString(), currency.rates)
+                        val currencyTypeFrom = binding.spFrom.selectedItem.toString()
+                        val currencyTypeTo = binding.spTo.selectedItem.toString()
+                        val fromCurrencyRate = getRateForCurrency(currencyTypeFrom, currency.rates)
+                        val toCurrencyRate = getRateForCurrency(currencyTypeTo, currency.rates)
                         val amount = Integer.parseInt(binding.etFrom.text.toString())
 
                         if (fromCurrencyRate != null && toCurrencyRate != null){
                             val result = round(amount * (toCurrencyRate / fromCurrencyRate))
-                            binding.tvResult.text = result.toString()
+                            binding.tvResult.text = "Result: $result $currencyTypeTo"
                         }
 
                     }
