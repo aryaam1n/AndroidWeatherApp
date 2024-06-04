@@ -1,11 +1,14 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-parcelize")
     id ("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
     id ("kotlin-kapt")
-//    id ("dagger.hilt.android.plugin")
 }
+
+
 
 android {
     namespace = "com.example.retrofit_intro"
@@ -13,6 +16,7 @@ android {
 
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 
     defaultConfig {
@@ -24,6 +28,15 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
+        val properties = Properties().apply { load(project.rootProject.file("local.properties").inputStream()) }
+        val mapsApiKey: String = properties.getProperty("mapsApiKey")
+        val weatherApiKey: String = properties.getProperty("weatherApiKey")
+        val currencyApiKey : String = properties.getProperty("currencyApiKey")
+
+        buildConfigField("String", "weatherApiKey", "\"$weatherApiKey\"")
+        buildConfigField("String", "currencyApiKey", "\"$currencyApiKey\"")
+
+        manifestPlaceholders["mapsApiKey"] = mapsApiKey
     }
 
     buildTypes {
@@ -61,13 +74,6 @@ dependencies {
     implementation("com.squareup.picasso:picasso:2.8")
     implementation("com.squareup.okhttp3:okhttp:4.9.0")
     implementation ("com.google.android.gms:play-services-maps:18.2.0")
-
-
-    //Dagger - Hilt
-//    implementation ("com.google.dagger:hilt-android:2.28-alpha")
-//    kapt ("com.google.dagger:hilt-android-compiler:2.28-alpha")
-//    implementation ("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02")
-//    kapt ("androidx.hilt:hilt-compiler:1.0.0-alpha02")
 
     // Activity KTX for viewModels()
     implementation ("androidx.activity:activity-ktx:1.1.0")

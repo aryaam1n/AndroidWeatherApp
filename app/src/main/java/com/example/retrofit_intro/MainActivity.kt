@@ -9,6 +9,7 @@ import com.example.retrofit_intro.constants.Constant
 import com.example.retrofit_intro.currencydata.CurrencyInterface
 import com.example.retrofit_intro.databinding.ActivityMainBinding
 import com.example.retrofit_intro.weatherdata.CurrWeatherInterface
+import com.squareup.picasso.BuildConfig
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         var city : String = applicationContext.getString(R.string.default_location)
+
 
         binding.searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(userQuery: String?): Boolean {
@@ -63,7 +65,7 @@ class MainActivity : AppCompatActivity() {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                     .create(CurrWeatherInterface::class.java)
-                    .getCurrentWeather(city, "imperial", applicationContext.getString(R.string.weather_api_key))
+                    .getCurrentWeather(city, "imperial", com.example.retrofit_intro.BuildConfig.weatherApiKey)
             } catch (e: IOException){
                 Toast.makeText(applicationContext, "APPLICATION ERROR: ${e.message}", Toast.LENGTH_SHORT).show()
                 return@launch

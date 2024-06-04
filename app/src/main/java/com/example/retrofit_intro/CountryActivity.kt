@@ -49,7 +49,7 @@ class CountryActivity : AppCompatActivity() {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                     .create(CurrencyInterface::class.java)
-                    .getExchangeRates(applicationContext.getString(R.string.currency_api_key))
+                    .getExchangeRates(BuildConfig.currencyApiKey)
             } catch (e: IOException){
                 Toast.makeText(applicationContext, "APPLICATION ERROR: ${e.message}", Toast.LENGTH_SHORT).show()
                 return@launch
