@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Aplicación del tiempo</string>
+    <string name="show_map">Mostrar mapa</string>
+    <string name="enter_city">Introduzca la ciudad....</string>
+    <string name="default_location">austin</string>
+    <string name="country_info">Información del país</string>
+    <string name="currency_from_txt">De</string>
+    <string name="currency_to_txt">A</string>
+    <string name="convert_btn">Convertir</string>
+    <string name="amount_hint">Cantidad</string>
+    <string-array name="currency_codes">
+        <item>USD</item>
+        <item>EUR</item>
+        <item>GBP</item>
+        <item>SEK</item>
+        <item>NOK</item>
+        <item>JPY</item>
+        <item>SAR</item>
+        <item>RUB</item>
+        <item>RON</item>
+        <item>KWD</item>
+        <item>INR</item>
+    </string-array>
+</resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ứng dụng thời tiết</string>
+    <string name="show_map">Hiển thị bản đồ</string>
+    <string name="enter_city">Nhập vào thành phố....</string>
+    <string name="default_location">Austin</string>
+    <string name="country_info">Thông tin quốc gia</string>
+    <string name="currency_from_txt">Từ</string>
+    <string name="currency_to_txt">ĐẾN</string>
+    <string name="convert_btn">Chuyển thành</string>
+    <string name="amount_hint">Số lượng</string>
+    <string-array name="currency_codes">
+        <item>USD</item>
+        <item>EUR</item>
+        <item>GBP</item>
+        <item>SEK</item>
+        <item>NOK</item>
+        <item>JPY</item>
+        <item>SAR</item>
+        <item>RUB</item>
+        <item>RON</item>
+        <item>KWD</item>
+        <item>INR</item>
+    </string-array>
+</resources>

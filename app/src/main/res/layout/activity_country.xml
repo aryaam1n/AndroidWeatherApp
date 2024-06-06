@@ -9,12 +9,14 @@
 
     <TextView
         android:id="@+id/CountryName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="150dp"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
         android:text="Country"
+        android:gravity="center"
         android:textStyle="bold"
-        android:textSize="50sp"
+        android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,8 +27,9 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="470dp"
         android:text="Code"
+        android:gravity="center"
         android:textStyle="bold"
-        android:textSize="50sp"
+        android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
